@@ -1,0 +1,16 @@
+* {
+    font-family: Arial;
+}
+
+.eventCard {
+    background-color: lightblue;
+    width: 200px;
+    height: 200px;
+    border-radius: 4px;
+}
+
+.eventCard ul li {
+    list-style-type: none;
+    padding: 10px;
+}
+
