@@ -43,6 +43,7 @@
     "mongodb": "^3.5.3",
     "mongoose": "^5.9.1",
     "react": "^16.12.0",
+    "react-countdown-now": "^2.1.2",
     "react-dom": "^16.12.0",
     "react-router-dom": "^5.1.2"
   }

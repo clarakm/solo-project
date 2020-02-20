@@ -6,12 +6,10 @@ import EventCard from './EventCard.jsx';
     //   render() {
         const potluck = props.props.eventList.map((event, i) => {
             return (
-                <Link to={`/${i}`}>
                 <EventCard
                     key={i}
                     info={event}
                 />
-                </Link>
             )
         })
         
@@ -22,7 +20,9 @@ import EventCard from './EventCard.jsx';
                         Create Event
                     </button>
                 </Link>
+                <div className="eventsContainer">
                 {potluck}
+                </div>
             </div>
         )
         
