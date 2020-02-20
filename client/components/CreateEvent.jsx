@@ -8,10 +8,62 @@ class CreateEvent extends Component {
         this.state = {
             name: '',
             date: '',
-            locations: '',
+            location: '',
         }
+        this.nameOnChange = this.nameOnChange.bind(this);
+        this.dateOnChange = this.dateOnChange.bind(this);
+        this.locationOnChange = this.locationOnChange.bind(this);
+        this.saveEvent = this.saveEvent.bind(this);
     }
+
+    nameOnChange(e) {
+        // console.log('nameonchange')
+        const { value } = e.target;
+        this.setState(prevState => ({
+            name: value
+        }));
+    }
+
+    dateOnChange(e) {
+        // console.log('dateonchange')
+        const { value } = e.target;
+        this.setState(prevState => ({
+            date: value
+        }));
+    }
+
+    locationOnChange(e) {
+        // console.log('locationonchange')
+        const { value } = e.target;
+        this.setState(prevState => ({
+            location: value
+        }));
+    }
+
+    async saveEvent() {
+        // console.log('saveevent')
+        console.log('in save event')
+        const body = {
+            name: this.state.name,
+            date: this.state.date,
+            location: this.state.location
+        }
+        const fetchRes = await fetch('/events/create', {
+            method: 'POST',
+            headers: {
+              "Content-Type": "Application/JSON"
+            },
+            body: JSON.stringify(body)
+        })
+        console.log('in post')
+        const data = await fetchRes.json();
+        console.log('data', data)
+        this.props.addEvent(data);
+    }
+
+
     render() {
+        const { name, date, location } = this.state;
     return (
         <section className="formContainer">
            <header className="pageHeader">
@@ -21,18 +73,21 @@ class CreateEvent extends Component {
             <h3>Event details below:</h3>
             <div className="fields">
                 <label htmlFor="name">Event Name: </label>
-                <input name="name" value={name} onChange={nameOnChange} />
+                <input name="name" value={name} onChange={this.nameOnChange} />
             </div>
             <div className="fields">
                 <label htmlFor="date">Date: </label>
-                <input name="date" value={date} onChange={dateOnChange} />
+                <input name="date" value={date} onChange={this.dateOnChange} />
             </div>
             <div className="fields">
                 <label htmlFor="location">Location: </label>
-                <input name="location" value={location} onChange={locationOnChange} />
+                <input name="location" value={location} onChange={this.locationOnChange} />
             </div>
             <div className="saveButton">
-                <button type="button" className="save" onClick={saveEvent}>Save Event</button>
+                <button type="button" className="save" onClick={this.saveEvent}>Save Event</button>
+                <Link to={`/`}>
+                <button type="button" className="back">Back To Events</button>
+                </Link>
             </div>
            </article>
         </section>

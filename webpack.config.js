@@ -5,6 +5,10 @@ module.exports = {
   entry: [
       './client/index.js',
   ],
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'main.js'
+  },
   module: {
     rules: [
       {
@@ -44,8 +48,5 @@ module.exports = {
       '/': 'http://localhost:3000'
     }
   },
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'main.js'
-  },
+  
 };

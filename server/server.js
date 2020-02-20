@@ -1,28 +1,23 @@
 const express = require('express');
 const app = express();
 const eventController = require('./controllers/eventController.js');
+const path = require('path');
+const bodyParser = require('body-parser');
 
 // create a GET route
-app.get('/events', eventController.getEvents, (req, res) => {
-    const obj = {
-        name: 'potluck',
-        date: 'monday',
-        location: 'codesmith'
-    };
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
+app.get('/events', eventController.getEvents, (req, res) => {
   res.status(200).json(res.locals.events);
 });
 
-// app.get('/create', (req,res) => {
-//     res.status(200).send('hello')
-// })
+app.post('/events/create', eventController.createEvent, (req, res) => {
+    res.status(200).json(res.locals.newEvent);
+})
 
-// app.post('/create', (req, res) => {
-//     res.status(200).send('hello')
-// })
-
-app.get('/', (req, res) => {
-    res.status(200).send('login page')
+app.use('/', (req, res) => {
+    res.status(200).sendFile(path.resolve(__dirname, '../dist/index.html'))
 })
 
 app.use('/', (req, res) => {

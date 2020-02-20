@@ -7,7 +7,7 @@ const EventCard = ({ info }) => {
             <div className="eventCard">
                 <ul className="eventDetailsList">
                     <li className="eventDetail">Event: {name}</li>
-                    <li className="eventDetail">Date/Time: {date}</li>
+                    <li className="eventDetail">Date: {date}</li>
                     <li className="eventDetail">Location: {location}</li>
                 </ul>
             </div>
