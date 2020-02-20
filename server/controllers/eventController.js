@@ -23,7 +23,6 @@ eventController.getEvents = (req, res, next) => {
 eventController.createEvent = (req, res, next) => {
     //creates event
     console.log('in create event');
-    console.log(req.body);
     const eventInfo = {
         name: req.body.name,
         date: req.body.date,
@@ -38,6 +37,10 @@ eventController.createEvent = (req, res, next) => {
 
 eventController.deleteEvent = (req, res, next) => {
     //deletes event
+    Event.deleteOne({name: req.body.name}, (err) => {
+        if (err) return (err);
+        next();
+    })
 }
 
 module.exports = eventController;

@@ -6,12 +6,13 @@ import CreateEvent from './components/CreateEvent.jsx';
 import './stylesheets/styles.css';
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       eventList: [],
     }
     this.addEvent = this.addEvent.bind(this)
+    // this.deleteEvent = this.deleteEvent.bind(this)
   }
 
   componentDidMount() {
@@ -40,6 +41,24 @@ class App extends Component {
     }))
   }
 
+  deleteEvent = async (event) => {
+    const body = {
+      name: event.name
+    }
+    console.log('in delete')
+    const fetchRes = await fetch('/events/', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "Application/JSON"
+      },
+      body: JSON.stringify(body)
+    });
+    const data = await fetchRes.json();
+    this.setState({
+      eventList: data
+    })
+  }
+
     render() {
       // const eventProps = {
       //   eventList: this.state.eventList
@@ -50,7 +69,7 @@ class App extends Component {
              <Switch>
                <Route exact path="/"
                 component={
-                  () => <Events props={this.state} addEvent={this.addEvent}/>
+                  () => <Events props={this.state} addEvent={this.addEvent} deleteEvent={this.deleteEvent}/>
                 }
                />
                <Route exact path="/create"

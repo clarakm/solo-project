@@ -3,11 +3,12 @@ import Countdown from 'react-countdown-now';
 import { Link } from 'react-router-dom';
 
 
-const EventCard = ({ info, id }) => {
-    const { name, date, location } = info;
+
+const EventCard = props => {
+    const { name, date, location } = props.info;
         return (
             <div className="eventCardContainer">
-            <Link to={`/${name}`}>
+            <Link to={`/${props.index}`}>
             <div className="eventCard">
                 <ul className="eventDetailsList">
                     <li id="eventName" className="eventDetail"><b>{name}</b></li>
@@ -17,7 +18,7 @@ const EventCard = ({ info, id }) => {
                 </ul> 
             </div>
             </Link>
-            <button>Delete Event</button>
+            <button onClick={() => {props.deleteEvent(props.info)}}>Delete Event</button>
             </div>
         )
 };

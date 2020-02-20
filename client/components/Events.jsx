@@ -4,11 +4,13 @@ import EventCard from './EventCard.jsx';
 
     const Events = props => {
     //   render() {
+        // const { eventList } = 
         const potluck = props.props.eventList.map((event, i) => {
             return (
                 <EventCard
-                    key={i}
+                    index={i}
                     info={event}
+                    deleteEvent={props.deleteEvent}
                 />
             )
         })
