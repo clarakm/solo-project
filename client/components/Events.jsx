@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import EventCard from './EventCard.jsx';
 
     const Events = props => {
-    //   render() {
-        // const { eventList } = 
         const potluck = props.props.eventList.map((event, i) => {
             return (
                 <EventCard
@@ -26,9 +24,7 @@ import EventCard from './EventCard.jsx';
                 {potluck}
                 </div>
             </div>
-        )
-        
-      
+        )  
 }
 
 export default Events;

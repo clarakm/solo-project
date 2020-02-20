@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
 class CreateEvent extends Component {
-// const CreateEvent = props => {
     constructor(props) {
         super(props);
         this.state = {
@@ -17,7 +16,6 @@ class CreateEvent extends Component {
     }
 
     nameOnChange(e) {
-        // console.log('nameonchange')
         const { value } = e.target;
         this.setState(prevState => ({
             name: value
@@ -25,7 +23,6 @@ class CreateEvent extends Component {
     }
 
     dateOnChange(e) {
-        // console.log('dateonchange')
         const { value } = e.target;
         this.setState(prevState => ({
             date: value
@@ -33,7 +30,6 @@ class CreateEvent extends Component {
     }
 
     locationOnChange(e) {
-        // console.log('locationonchange')
         const { value } = e.target;
         this.setState(prevState => ({
             location: value
@@ -41,7 +37,6 @@ class CreateEvent extends Component {
     }
 
     async saveEvent() {
-        // console.log('saveevent')
         console.log('in save event')
         const body = {
             name: this.state.name,

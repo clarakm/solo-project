@@ -12,9 +12,18 @@ app.post('/events/create', eventController.createEvent, (req, res) => {
     res.status(200).json(res.locals.newEvent);
 })
 
+app.get('/events/details/:id', eventController.getDetails, (req, res) => {
+    res.status(200).json(res.locals.details);
+})
+
+app.post('/events/details/:id', eventController.createDetail, eventController.getDetails, (req, res) => {
+    res.status(200).json(res.locals.details)
+})
+
 app.get('/events', eventController.getEvents, (req, res) => {
   res.status(200).json(res.locals.events);
 });
+
 
 app.post('/events', eventController.deleteEvent, eventController.getEvents, (req, res) => {
     res.status(200).json(res.locals.events);

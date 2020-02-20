@@ -2,7 +2,7 @@ const model = require('../models/eventModel.js');
 
 const eventController = {};
 
-const { Event } = model;
+const { Event, Detail } = model;
 
 eventController.getEvents = (req, res, next) => {
     //displays all events
@@ -43,6 +43,34 @@ eventController.deleteEvent = (req, res, next) => {
             return next();
         }
     })
+}
+
+eventController.getDetails = (req, res, next) => {
+    Detail.find({}).exec()
+    .then(results => {
+        res.locals.details = results;
+        return next();
+    })
+    .catch((err) => {
+        return next({
+            log: 'Middleware error: getDetails',
+            message: {err: 'error occurred'}
+        })
+    });
+}
+
+eventController.createDetail = (req, res, next) => {
+    console.log('in create detail', req.body)
+    const detailInfo = {
+        guest: req.body.guest,
+        dish: req.body.dish,
+        specificDish: req.body.specificDish
+    }
+    Detail.create(detailInfo, (err, result) => {
+        if (err) return (err);
+        res.locals.newDetail = result
+        return next();
+    });
 }
 
 module.exports = eventController;

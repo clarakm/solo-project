@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, useParams } from 'react-router-dom';
 import Events from './components/Events.jsx';
 import CreateEvent from './components/CreateEvent.jsx';
-// import EventCard from './components/EventCard.jsx';
+import EventDetails from './components/EventDetails.jsx';
+
 import './stylesheets/styles.css';
 
 class App extends Component {
@@ -12,7 +13,7 @@ class App extends Component {
       eventList: [],
     }
     this.addEvent = this.addEvent.bind(this)
-    // this.deleteEvent = this.deleteEvent.bind(this)
+    this.deleteEvent = this.deleteEvent.bind(this)
   }
 
   componentDidMount() {
@@ -60,9 +61,6 @@ class App extends Component {
   }
 
     render() {
-      // const eventProps = {
-      //   eventList: this.state.eventList
-      // };
       return (
         <div className="home">
           <main>
@@ -77,12 +75,16 @@ class App extends Component {
                   () =>  <CreateEvent props={this.state} addEvent={this.addEvent} />
                 }
                />
+              <Route path="/details/:id"
+                component={
+                  () => <EventDetails props={this.state} />
+                }
+              />
              </Switch>
           </main>
         </div>
       );
     }
-  
   }
   
   export default App;

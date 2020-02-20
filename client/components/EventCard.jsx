@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import Countdown from 'react-countdown-now';
-import { Link } from 'react-router-dom';
-
+import { Switch, Link, Route, withRouter } from 'react-router-dom';
 
 
 const EventCard = props => {
     const { name, date, location } = props.info;
         return (
             <div className="eventCardContainer">
-            <Link to={`/${props.index}`}>
+            <Link to={`/details/${props.index}`}>
             <div className="eventCard">
                 <ul className="eventDetailsList">
                     <li id="eventName" className="eventDetail"><b>{name}</b></li>
@@ -23,4 +22,4 @@ const EventCard = props => {
         )
 };
 
-export default EventCard;
+export default withRouter(EventCard);

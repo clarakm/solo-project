@@ -25,4 +25,12 @@ const eventSchema = new Schema({
 
 const Event = mongoose.model('event', eventSchema);
 
-module.exports = { Event }
+const eventDetailsSchema = new Schema({
+  guest: String,
+  dish: String,
+  specificDish: String
+})
+
+const Detail = mongoose.model('detail', eventDetailsSchema);
+
+module.exports = { Event, Detail }
