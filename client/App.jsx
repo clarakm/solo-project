@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Events from './components/Events.jsx';
-import EventCard from './components/EventCard.jsx';
+import CreateEvent from './components/CreateEvent.jsx';
+// import EventCard from './components/EventCard.jsx';
 import './stylesheets/styles.css';
 
 class App extends Component {
@@ -9,20 +10,18 @@ class App extends Component {
       return (
         <div className="home">
           <main>
-             {/* <Switch>
-               <Route
-                exact
-                path='/'
-                component={Events}
+             <Switch>
+               <Route exact path="/"
+                component={
+                  () => <Events />
+                }
                />
-               <Route
-                exact
-                path='/create'
-                component={CreateEvent}
+               <Route exact path="/create"
+                component={
+                  () =>  <CreateEvent />
+                }
                />
-             </Switch> */}
-             <Events />
-            
+             </Switch>
           </main>
         </div>
       );
