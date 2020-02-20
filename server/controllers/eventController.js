@@ -39,7 +39,9 @@ eventController.deleteEvent = (req, res, next) => {
     //deletes event
     Event.deleteOne({name: req.body.name}, (err) => {
         if (err) return (err);
-        next();
+        else {
+            return next();
+        }
     })
 }
 

@@ -9,14 +9,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.post('/events/create', eventController.createEvent, (req, res) => {
-    res.status(200).json(res.locals.events);
+    res.status(200).json(res.locals.newEvent);
 })
 
 app.get('/events', eventController.getEvents, (req, res) => {
   res.status(200).json(res.locals.events);
 });
 
-app.post('/events', eventController.deleteEvent, (req, res) => {
+app.post('/events', eventController.deleteEvent, eventController.getEvents, (req, res) => {
     res.status(200).json(res.locals.events);
 })
 
