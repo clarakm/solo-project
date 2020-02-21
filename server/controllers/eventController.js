@@ -64,7 +64,8 @@ eventController.createDetail = (req, res, next) => {
     const detailInfo = {
         guest: req.body.guest,
         dish: req.body.dish,
-        specificDish: req.body.specificDish
+        specificDish: req.body.specificDish,
+        restrictions: req.body.restrictions
     }
     Detail.create(detailInfo, (err, result) => {
         if (err) return (err);

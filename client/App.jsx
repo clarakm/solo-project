@@ -75,7 +75,7 @@ class App extends Component {
                   () =>  <CreateEvent props={this.state} addEvent={this.addEvent} />
                 }
                />
-              <Route path="/details/:id"
+              <Route path="/details"
                 component={
                   () => <EventDetails props={this.state} />
                 }

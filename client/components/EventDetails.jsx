@@ -7,28 +7,25 @@ class EventDetails extends Component {
         super(props)
         this.state = {
             guest: '',
-            // appetizers: [],
-            // entrees: [],
-            // desserts: [],
             dish: '',
             specificDish: '',
+            restrictions: '',
             detailsArray: [],
         }
         this.guestChange = this.guestChange.bind(this);
         this.chooseDish = this.chooseDish.bind(this);
         this.dishChange = this.dishChange.bind(this);
+        this.restrictionsChange = this.restrictionsChange.bind(this);
     }
 
     componentDidMount() {
-        // const id = this.props.match.params.id;
         this.getDetails();
      }
 
     
      getDetails = () => {
-        const id = this.props.match.params.id;
         console.log('in get details')
-        fetch(`/events/details/${id}`)
+        fetch(`/events/details`)
         .then(res => {
             console.log('res: ', res)
             return res.json();
@@ -64,16 +61,24 @@ class EventDetails extends Component {
         }))
     }
 
+    restrictionsChange(e) {
+        console.log('restrictionsChange');
+        const { value } = e.target;
+        this.setState(prevState => ({
+            restrictions: value
+        }))
+    }
+
     async saveDish() {
-        const id = this.props.match.params.id;
         console.log('insavedish');
         const body = {
             guest: this.state.guest,
             dish: this.state.dish,
-            specificDish: this.state.specificDish
+            specificDish: this.state.specificDish,
+            restrictions: this.state.restrictions
         }
         console.log(body)
-        const fetchRes = await fetch(`/events/details/${id}`, {
+        const fetchRes = await fetch(`/events/details`, {
             method: 'POST',
             headers: {
               "Content-Type": "Application/JSON"
@@ -82,76 +87,65 @@ class EventDetails extends Component {
         })
         console.log('in post det')
         const data = await fetchRes.json();
-        console.log('data', data)
+        console.log('data HERE', data)
         // this.getDetails();
         this.setState(prevState => ({
             guest: '',
             dish: '',
             specificDish: '',
+            restrictions: '',
             detailsArray: data
         }))
     }
 
     render() {
-        const { guest, dish, specificDish } = this.state;
-        // console.log(this.state.detailsArray)
-        
-        // const appetizerList = appetizers.map((app) => {
-        //     return app;
-        // })
-        // const entreeList = entrees.map((ent) => {
-        //     return ent;
-        // })
-        // console.log(entreeList)
-        // const dessertList = desserts.map((des) => {
-        //     return des;
-        // })
+        const { guest, dish, specificDish, restrictions } = this.state;
         
         return (
             <section className="detailsContainer">
-                <h1>Event Details</h1>
-                <article className="foods">
-                    <CoordinateMeals props={this.state}/>
-                    {/* <h3>Appetizers</h3>
-                        <div className="appetizers">
-                            {appetizerList}
+                <div className="mealItems">
+                    <header className="pageHeader">
+                        <h2>Potluck Details</h2>
+                    </header>
+                    <article className="foods">
+                        <CoordinateMeals props={this.state}/>
+                    </article>
+                </div>
+                <div className="forms">
+                    <header className="pageHeader">
+                        <h2 id="bring">What Will You Bring?</h2>
+                    </header>
+                    <article className="submit">
+                        <div className="input">
+                            <label htmlFor="guest">Guest:&nbsp;&nbsp; </label>
+                            <input name="guest" value={guest} onChange={this.guestChange} />
                         </div>
-                    <h3>Entrees</h3>
-                        <div className="entrees">
-                            {entreeList}
+                        <div className="input">
+                            <label htmlFor="dish">Pick your dish:&nbsp;&nbsp;&nbsp;
+                            <select value={dish} onChange={this.chooseDish}>
+                                <option value="choose">Choose</option>
+                                <option value="appetizer">Appetizer</option>
+                                <option value="entree">Entree</option>
+                                <option value="dessert">Dessert</option>
+                            </select>
+                            </label>
                         </div>
-                    <h3>Desserts</h3>
-                        <div className="desserts">
-                            {dessertList}
-                        </div> */}
-                </article>
-                <h2>What Will You Bring?</h2>
-                <article className="submit">
-                    <div className="input">
-                        <label htmlFor="guest">Guest: </label>
-                        <input name="guest" value={guest} onChange={this.guestChange} />
-                    </div>
-                    <div className="input">
-                        <label htmlFor="dish">Pick your dish:
-                        <select value={dish} onChange={this.chooseDish}>
-                            <option value="choose">Choose</option>
-                            <option value="appetizer">Appetizer</option>
-                            <option value="entree">Entree</option>
-                            <option value="dessert">Dessert</option>
-                        </select>
-                        </label>
-                    </div>
-                    <div className="input">
-                        <label htmlFor="specificDish">Dish: </label>
-                        <input name="specificDish" value={specificDish} onChange={this.dishChange} />
-                    </div>
-                    <div className="saveDishButton">
-                        <button type="button" className="saveDish" onClick={() => {this.saveDish()}}>Save</button>
-                        <Link to={`/`}>
-                            <button type="button" className="back">Back To Events</button>
-                        </Link>
-                    </div>
-                </article>
+                        <div className="input">
+                            <label htmlFor="specificDish">Dish:&nbsp;&nbsp; </label>
+                            <input name="specificDish" value={specificDish} onChange={this.dishChange} />
+                        </div>
+                        <div className="input">
+                            <label htmlFor="restrictions">Dietary Restrictions:&nbsp;&nbsp; </label>
+                            <input name="restrictions" value={restrictions} onChange={this.restrictionsChange} />
+                        </div>
+                        <div className="saveDishButton">
+                            <button type="button" className="save" onClick={() => {this.saveDish()}}>Save</button>
+                            <Link to={`/`}>
+                                <button type="button" className="back">Back To Events</button>
+                            </Link>
+                        </div>
+                    </article>
+                </div>
             </section>
 
 

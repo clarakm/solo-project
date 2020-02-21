@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ListItem from './ListItem.jsx';
+import DietRestrictions from './DietRestrictions.jsx';
 
 
 const CoordinateMeals = props => {
@@ -31,6 +32,13 @@ const CoordinateMeals = props => {
             )    
         }
     });
+    const dietList = props.props.detailsArray.map((app, i) => {
+        return (
+            <DietRestrictions
+            items={app}
+            />
+        )
+    })
     return (
         <div>
             <h3>Appetizers</h3>
@@ -39,6 +47,8 @@ const CoordinateMeals = props => {
             {entreeList}
             <h3>Desserts</h3>
             {dessertList}
+            <h3>Dietary Restrictions/Allergies</h3>
+            {dietList}
         </div>
     )
     

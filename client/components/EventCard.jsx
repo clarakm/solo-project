@@ -7,7 +7,8 @@ const EventCard = props => {
     const { name, date, location } = props.info;
         return (
             <div className="eventCardContainer">
-            <Link to={`/details/${props.index}`}>
+            {/* <Link to={`/details/${props.index}`}> */}
+            <Link to={`/details`}>
             <div className="eventCard">
                 <ul className="eventDetailsList">
                     <li id="eventName" className="eventDetail"><b>{name}</b></li>
@@ -17,7 +18,7 @@ const EventCard = props => {
                 </ul> 
             </div>
             </Link>
-            <button onClick={() => {props.deleteEvent(props.info)}}>Delete Event</button>
+            <button className="deleteButton" onClick={() => {props.deleteEvent(props.info)}}>Delete Event</button>
             </div>
         )
 };

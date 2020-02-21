@@ -38,9 +38,13 @@ class CreateEvent extends Component {
 
     async saveEvent() {
         console.log('in save event')
+        const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        const d = new Date(this.state.date);
+        const dateStr = monthNames[d.getMonth()] + ' ' + (d.getDate()+1).toString() + ', '+ d.getFullYear().toString();
+        console.log('ds',dateStr)
         const body = {
             name: this.state.name,
-            date: this.state.date,
+            date: dateStr,
             location: this.state.location
         }
         const fetchRes = await fetch('/events/create', {
@@ -61,21 +65,21 @@ class CreateEvent extends Component {
         const { name, date, location } = this.state;
     return (
         <section className="formContainer">
-           <header className="pageHeader">
-               <h1>Create Event</h1>
-           </header>
            <article className="infoContainer">
-            <h3>Event details below:</h3>
+           <header id="createHeader" className="pageHeader">
+               <h2>Create Event</h2>
+           </header>
+            {/* <h3 className="detailsBelow">Submit&nbsp;&nbsp;details&nbsp;&nbsp;below:</h3> */}
             <div className="fields">
-                <label htmlFor="name">Event Name: </label>
+                <label htmlFor="name">Event Name:&nbsp;&nbsp; </label>
                 <input name="name" value={name} onChange={this.nameOnChange} />
             </div>
             <div className="fields">
-                <label htmlFor="date">Date: </label>
-                <input name="date" value={date} onChange={this.dateOnChange} />
+                <label htmlFor="date">Date:&nbsp;&nbsp; </label>
+                <input type="date" name="date" value={date} onChange={this.dateOnChange} />
             </div>
             <div className="fields">
-                <label htmlFor="location">Location: </label>
+                <label htmlFor="location">Location:&nbsp;&nbsp; </label>
                 <input name="location" value={location} onChange={this.locationOnChange} />
             </div>
             <div className="saveButton">

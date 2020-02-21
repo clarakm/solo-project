@@ -28,7 +28,8 @@ const Event = mongoose.model('event', eventSchema);
 const eventDetailsSchema = new Schema({
   guest: String,
   dish: String,
-  specificDish: String
+  specificDish: String,
+  restrictions: String,
 })
 
 const Detail = mongoose.model('detail', eventDetailsSchema);

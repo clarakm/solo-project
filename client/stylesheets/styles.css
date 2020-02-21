@@ -1,23 +1,30 @@
 * {
-    font-family: Arial;
+    letter-spacing: 1px;
 }
 body {
     background-image: url('https://253qv1sx4ey389p9wtpp9sj0-wpengine.netdna-ssl.com/wp-content/uploads/2018/11/Dishes_at_Potluck.jpg');
 
 }
 
-.container button {
+.addButton {
     float: right;
     padding: 20px;
-    border: 1px solid #34a534;
-    border-radius: 5px;
-    background-color: #34a534;
-    color: white;
     font-size: 14px;
+    margin: 5px;
+    background-color: #fdff80;
+    border-radius: 4px;
 }
-.container button:hover {
+.addButton:hover {
+    background-color: #fffc5c;
+}
+.deleteButton {
+    padding: 10px;
+    margin: 5px;
+    background-color: #eeeeee;
+    border-radius: 4px;
+}
+.deleteButton:hover {
     background-color: white;
-    color: green;
 }
 
 .eventsContainer {
@@ -45,20 +52,54 @@ header {
     justify-content: center;
 }
 h1 {
-    font-size: 35px;
+    font-size: 140px;
+    letter-spacing: 20px;
+    font-family: 'Lacquer', sans-serif;
+    margin-top: -10px;
+    margin-bottom: 0;
     color: white;
     -webkit-text-fill-color: white; /* Will override color (regardless of order) */
     -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: #888888;
+    -webkit-text-stroke-color: #707070;
+}
+h2 {
+    font-size: 50px;
+    font-family: 'Quicksand', sans-serif;
+    margin-bottom: -5px;
+    margin-top: -5px;
 }
 
 .eventCard ul li {
     list-style-type: none;
     padding: 10px;
+    font-family: 'Quicksand', san-serif;
+    font-weight: 800;
 }
 
 #eventName {
     font-size: 25px;
+    font-family: 'Julius Sans One';
+    margin-top: -30px;
+}
+.eventDetail {
+    margin: 10px;
+}
+.eventCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.eventDetailsList {
+    text-align: center;
+    margin-left: -50px;
+  
+}
+
+span {
+    font-family: 'Quicksand', san-serif;
+    font-size: 30px;
+    font-weight: 600;
 }
 
 a {
@@ -71,18 +112,104 @@ a {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    
 }
 .infoContainer {
     background-color: #f3f3f3;
-    border-radius: 8px;
+    opacity: 0.9;
     width: 400px;
     height: 500px;
     align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     
     
+}
+#createHeader {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.detailsBelow {
+    font-family: 'Raleway';
+    letter-spacing: 2px;
 }
 .fields {
     align-self: center;
+    margin: 20px;
+}
+.saveButton {
+    padding: 10px;
+}
+.save {
+    padding: 10px;
+    margin: 5px;
+    background-color: #fffbd6;
+    border-radius: 4px;
+}
+.back {
+    padding: 10px;
+    margin: 5px;
+    background-color: #eeeeee;
+    border-radius: 4px;
+}
+.save:hover {
+    background-color: #fff9a9;
+}
+.back:hover {
+    background-color: white;
 }
 
+/* Event Detail Page Styling */
+
+.detailsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.mealItems {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+    background-color: white;
+    padding: 20px;
+    opacity: 0.9;
+}
+.foods {
+    font-family: "Quicksand", sans-serif;
+    margin-bottom: 10px;
+}
+.items {
+    margin-bottom: 5px;
+}
+h3 {
+    font-family: "Arial", sans-serif;
+}
+/* what will you bring section*/
+.forms {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+    background-color: white;
+    padding: 20px;
+    opacity: 0.9;
+}
+.submit {
+    margin: 10px;
+}
+.input {
+    margin: 10px;
+}
+
+label {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 20px;
+}
+input {
+    width: 130px;
+    height: 20px;
+}
+input:focus {
+    outline: none;
+}
 

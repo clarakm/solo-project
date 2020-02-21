@@ -12,11 +12,11 @@ app.post('/events/create', eventController.createEvent, (req, res) => {
     res.status(200).json(res.locals.newEvent);
 })
 
-app.get('/events/details/:id', eventController.getDetails, (req, res) => {
+app.get('/events/details', eventController.getDetails, (req, res) => {
     res.status(200).json(res.locals.details);
 })
 
-app.post('/events/details/:id', eventController.createDetail, eventController.getDetails, (req, res) => {
+app.post('/events/details', eventController.createDetail, eventController.getDetails, (req, res) => {
     res.status(200).json(res.locals.details)
 })
 
