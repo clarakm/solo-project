@@ -1,13 +1,11 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
-const path = require('path');
+const path = require("path");
 
 module.exports = {
-  entry: [
-      './client/index.js',
-  ],
+  entry: ["./client/index.js"],
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'main.js'
+    path: path.resolve(__dirname, "dist"),
+    filename: "main.js"
   },
   module: {
     rules: [
@@ -17,9 +15,9 @@ module.exports = {
         use: {
           loader: "babel-loader",
           options: {
-            presets: ['@babel/preset-env'],
-            plugins: ['@babel/plugin-proposal-class-properties']
-          },
+            presets: ["@babel/preset-env"],
+            plugins: ["@babel/plugin-proposal-class-properties"]
+          }
         }
       },
       {
@@ -32,21 +30,20 @@ module.exports = {
       },
       {
         test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
-      },
+        use: ["style-loader", "css-loader"]
+      }
     ]
   },
   plugins: [
-      new HtmlWebPackPlugin({
-        template: "./client/index.html",
-        filename: "./index.html"
-      })
-    ],
-  devServer : {
-    // publicPath: '/dist/',
+    new HtmlWebPackPlugin({
+      template: "./client/index.html",
+      filename: "./index.html"
+    })
+  ],
+  devServer: {
+    // publicPath: "/dist/",
     proxy: {
-      '/': 'http://localhost:3000'
+      "/": "http://localhost:3000"
     }
-  },
-  
+  }
 };
